@@ -6,9 +6,16 @@ import 'package:project_pab/pages/favorite_pages.dart';
 import 'package:project_pab/pages/pages.dart';
 import 'package:project_pab/pages/profile_pages.dart';
 import 'package:project_pab/shared/shared.dart';
+import 'package:project_pab/pages/favorites.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+    create: (context) => FavoriteCatsProvider(),
+    child : MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
