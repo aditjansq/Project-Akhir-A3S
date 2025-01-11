@@ -310,7 +310,7 @@ class _WellcomePageState extends State<WellcomePage> {
                                                 }
                                               },
                                               child: Text(
-                                                'Registerrr',
+                                                'Register',
                                                 style: whiteTextStyle.copyWith(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500,

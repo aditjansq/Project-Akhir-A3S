@@ -3,7 +3,7 @@ import 'chat_room_page.dart';
 
 class CatDetailPage extends StatefulWidget {
   final Map<String, dynamic> cat;
-  final Function(bool) onFavoriteChanged;
+  final Function(bool) onFavoriteChanged; //Menambahkan detail ke favorite
   final List<Map<String, dynamic>> otherCats;
 
   CatDetailPage({
@@ -60,7 +60,6 @@ class _CatDetailPageState extends State<CatDetailPage> {
         children: [
           Column(
             children: [
-              // Bagian Gambar dengan Zoom View
               GestureDetector(
                 onTap: () {
                   showDialog(
@@ -206,7 +205,11 @@ class _CatDetailPageState extends State<CatDetailPage> {
                                   MaterialPageRoute(
                                     builder: (context) => CatDetailPage(
                                       cat: otherCat,
-                                      onFavoriteChanged: (isFavorite) {},
+                                      onFavoriteChanged: (isFavorite) {
+                                        setState(() {
+                                          otherCat['isFavorite'] = isFavorite;
+                                        });
+                                      },
                                       otherCats: widget.otherCats,
                                     ),
                                   ),
@@ -258,10 +261,8 @@ class _CatDetailPageState extends State<CatDetailPage> {
                         ),
                       ),
                       SizedBox(height: 80),
-                      // Tombol Chat dan Adopt
                       Row(
                         children: [
-                          // Tombol Chat Bulat
                           ElevatedButton(
                             onPressed: navigateToChatRoom,
                             child: Icon(Icons.chat, size: 30, color: Colors.white),
@@ -272,7 +273,6 @@ class _CatDetailPageState extends State<CatDetailPage> {
                             ),
                           ),
                           SizedBox(width: 16),
-                          // Tombol Adopt
                           Expanded(
                             child: ElevatedButton(
                               onPressed: adoptNow,
@@ -301,7 +301,6 @@ class _CatDetailPageState extends State<CatDetailPage> {
               ),
             ),
           ),
-          // Tombol Back
           Positioned(
             top: 40,
             left: 16,
@@ -319,11 +318,10 @@ class _CatDetailPageState extends State<CatDetailPage> {
               ),
             ),
           ),
-          // Tombol Love
           Positioned(
             top: 40,
             right: 16,
-            child: GestureDetector(
+            child: GestureDetector( // TODO: Implement favorite feature
               onTap: toggleLike,
               child: Container(
                 decoration: BoxDecoration(

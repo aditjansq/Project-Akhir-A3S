@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'favorites.dart'; // Import your FavoriteCatsProvider
 import 'cat_detail_page.dart';
 import 'notification_page.dart';
 
@@ -79,7 +81,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Menghilangkan tombol back
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
@@ -115,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                         shape: BoxShape.circle,
                       ),
                       child: Text(
-                        "3", // Contoh jumlah notifikasi
+                        "3",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -192,15 +194,6 @@ class _HomePageState extends State<HomePage> {
                             ? Colors.lightBlueAccent
                             : Colors.grey[300],
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: selectedCategory == category
-                            ? [
-                                BoxShadow(
-                                  color: Colors.blue.withOpacity(0.3),
-                                  blurRadius: 8,
-                                  offset: Offset(0, 4),
-                                )
-                              ]
-                            : [],
                       ),
                       child: Row(
                         children: [
@@ -249,10 +242,10 @@ class _HomePageState extends State<HomePage> {
                                   cat: cat,
                                   onFavoriteChanged: (isFavorite) {
                                     setState(() {
-                                      cat['isFavorite'] = isFavorite;
+                                      cat['isFavorite'] = isFavorite; // Update the cat's favorite status
                                     });
                                   },
-                                  otherCats: allCats,
+                                  otherCats: allCats.where((c) => c != cat).toList(), // Pass other cats except the selected one
                                 ),
                               ),
                             );
@@ -277,58 +270,47 @@ class _HomePageState extends State<HomePage> {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     cat['image'],
-                                    width: 100,
-                                    height: 100,
+                                    width: 80,
+                                    height: 80,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
+                                SizedBox(width: 12),
                                 Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          cat['name'],
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        cat['name'],
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          "Age: ${cat['age']}",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.grey[700],
-                                          ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        cat['age'],
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey[700],
                                         ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          cat['description'],
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey[600],
-                                          ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        cat['description'],
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey[700],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      cat['isFavorite'] = !cat['isFavorite'];
-                                    });
-                                    Fluttertoast.showToast(
-                                      msg: cat['isFavorite']
-                                          ? "Added to Favorites"
-                                          : "Removed from Favorites",
-                                    );
-                                  },
-                                  child: Icon(
+                                IconButton(
+                                  icon: Icon(
                                     cat['isFavorite']
                                         ? Icons.favorite
                                         : Icons.favorite_border,
@@ -336,6 +318,27 @@ class _HomePageState extends State<HomePage> {
                                         ? Colors.red
                                         : Colors.grey,
                                   ),
+                                  onPressed: () { //fungsi untuk tambahi favorite
+                                    final favoriteCatsProvider =
+                                        Provider.of<FavoriteCatsProvider>(
+                                            context,
+                                            listen: false);
+                                    if (cat['isFavorite']) {
+                                      favoriteCatsProvider.removeFromFavorites(
+                                          cat['name']);
+                                      Fluttertoast.showToast(
+                                          msg: "Removed from Favorites");
+                                    } else {
+                                      favoriteCatsProvider.addToFavorites(cat);
+                                      Fluttertoast.showToast(
+                                          msg: "Added to Favorites");
+                                    }
+
+                                    setState(() {
+                                      cat['isFavorite'] =
+                                          !cat['isFavorite'];
+                                    });
+                                  },
                                 ),
                               ],
                             ),

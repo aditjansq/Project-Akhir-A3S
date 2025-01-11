@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class Cat {
-  final String name;
-  final String breed;
-  final String imageUrl;
-
-  Cat({required this.name, required this.breed, required this.imageUrl});
-}
-
 class FavoriteCatsProvider extends ChangeNotifier {
-  List<Cat> _favoriteCats = [];
+  final List<Map<String, dynamic>> _favoriteCats = [];
 
-  List<Cat> get favoriteCats => _favoriteCats;
+  // Get the list of favorite cats
+  List<Map<String, dynamic>> get favoriteCats => _favoriteCats;
 
-  void addToFavorites(Cat cat) {
-    _favoriteCats.add(cat);
-    notifyListeners();  // Notifikasi perubahan data
+  // Add a cat to the favorites
+  void addToFavorites(Map<String, dynamic> cat) {
+    if (!_favoriteCats.any((favoriteCat) => favoriteCat['name'] == cat['name'])) {
+      _favoriteCats.add(cat);
+      notifyListeners();
+    }
   }
 
-  // ALYA
+  // Remove a cat from the favorite
+  void removeFromFavorites(String catName) {
+    _favoriteCats.removeWhere((cat) => cat['name'] == catName);
+    notifyListeners();
+  }
 }

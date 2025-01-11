@@ -36,10 +36,14 @@ class FavoritePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final cat = favoriteCatsProvider.favoriteCats[index];
                 return ListTile(
-                  title: Text(cat.name),
-                  subtitle: Text(cat.breed),
-                  leading: Image.network(cat.imageUrl),
+                  title: Text(cat['name'] ?? 'Unknown Name'),
+                  subtitle: Text(cat['breed'] ?? 'Unknown Breed'),
+                  leading: cat['image'] != null
+                      ? Image.network(cat['image'])
+                      : Icon(Icons.image_not_supported, size: 40),
+                      
                 );
+
               },
             );
           }
