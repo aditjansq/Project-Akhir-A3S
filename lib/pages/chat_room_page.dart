@@ -61,6 +61,10 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
       Future.delayed(const Duration(seconds: 1), () {
         _sendMessage(widget.catName, 'Thank you for your message! 😊');
       });
+
+      Future.delayed(const Duration(seconds: 1), () {
+        _sendMessage(widget.catName, 'untuk sementara waktu jika ada yang ingin ditanyakan mengenai informasi tentang kucing silahkan hubungi nomor atau media sosial kami di bawah ini Terima Kasih 😊 WhatsApp: 082156780987 Instagram:mochi_pet_adopt ');
+      });    
     }
   }
 

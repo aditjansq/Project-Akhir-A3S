@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       "age": "2 years",
       "description": "A calm and gentle companion. Perfect for families.",
       "image":
-          "https://studio.mrngroup.co/storage/app/media/Prambors/Editorial%203/Kucing-20230713184624.webp?tr=w-600",
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIT_WmXHe494_TuL5e6D19V6ahto2XZsLo2w&s',
       "isFavorite": false,
       "breed": "Siamese",
       "gender": "Male",
@@ -40,9 +40,50 @@ class _HomePageState extends State<HomePage> {
       "image":
           "https://res.cloudinary.com/dk0z4ums3/image/upload/v1729113851/attached_image/kucing-himalaya-kenali-keunikan-dan-cara-merawatnya.jpg",
       "isFavorite": false,
-      "breed": "Bengal",
+      "breed": "Himalaya",
       "gender": "Female",
     },
+    {
+      "name": "Boo",
+      "age": "4 years",
+      "description": "A calm and curious. Love sleep.",
+      "image":
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRswM-oB_0gtuJEDBNUqyAofuyzMtsxJNeaRA&s',
+      "isFavorite": false,
+      "breed": "Bengal",
+      "gender": "Male",
+    },
+    {
+      "name": "Cone",
+      "age": "1 years",
+      "description": "A calm, shy and active. Loves play in yard .",
+      "image":
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLxx5ygEaoJ_453WOQPlhsvhZU9OhXiXlntg&s',
+      "isFavorite": false,
+      "breed": "Maine Coon",
+      "gender": "Male",
+    },
+    {
+       "name": "Soko",
+      "age": "3 years",
+      "description": "A calm and active. Loves exploring new places.",
+      "image":
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7fctQ3Y1230x152_dySZLs0MUF_6a7MvReA&s',
+      "isFavorite": false,
+      "breed": "Persian",
+      "gender": "Male",
+    },
+    {
+      "name": "Mochi",
+      "age": "2 years",
+      "description": "A calm and Strong. Loves get snack.",
+      "image":
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm4qHHR8_MhdU-CrGN39ozRGYSl-nzABPcFg&s',
+      "isFavorite": false,
+      "breed": "Siamese",
+      "gender": "Female",
+    }
+    
   ];
 
   List<Map<String, dynamic>> filteredCats = [];
