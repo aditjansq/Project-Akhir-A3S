@@ -66,13 +66,12 @@ class _ProfileScreenState extends State<ProfilePage> {
             color: Colors.cyan[400],  
           ),  
           Padding(  
-            padding: const EdgeInsets.symmetric(horizontal: 16),  
-            child: Column(  
-              children: [  
-                Align(  
-                  alignment: Alignment.topCenter,  
-                  child: Padding(  
-                    padding: const EdgeInsets.only(top: 150),  
+            padding: const EdgeInsets.only(top: 150, left: 16, right: 16),  
+            child: SingleChildScrollView(  
+              child: Column(  
+                children: [  
+                  Align(  
+                    alignment: Alignment.topCenter,  
                     child: Stack(  
                       alignment: Alignment.bottomRight,  
                       children: [  
@@ -86,7 +85,7 @@ class _ProfileScreenState extends State<ProfilePage> {
                           child: const CircleAvatar(  
                             radius: 50,  
                             backgroundImage:  
-                                AssetImage('assets/images/catProfile.png'),  
+                            AssetImage('assets/images/catProfile.png'),  
                           ),  
                         ),  
                         if (isSignedIn)  
@@ -101,159 +100,159 @@ class _ProfileScreenState extends State<ProfilePage> {
                       ],  
                     ),  
                   ),  
-                ),  
-                SizedBox(height: 20),  
-                Divider(color: Colors.deepPurple[100]),  
-                const SizedBox(height: 4),  
-                Row(  
-                  children: [  
-                    SizedBox(  
-                      width: MediaQuery.of(context).size.width / 3,  
-                      child: const Row(  
-                        children: [  
-                          Icon(Icons.lock, color: Colors.amber),  
-                          SizedBox(width: 8),  
-                          Text(  
-                            'Pengguna',  
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
-                          ),  
-                        ],  
-                      ),  
-                    ),  
-                    Expanded(  
-                      child: Text(  
-                        ': $userName',  
-                        style: const TextStyle(fontSize: 14),  
-                      ),  
-                    ),  
-                    if (isSignedIn)  
-                      IconButton(  
-                        onPressed: () {  
-                          _showEditDialog(context, 'Username', userName, false);  
-                        },  
-                        icon: const Icon(Icons.edit),  
-                      ),  
-                  ],  
-                ),  
-                SizedBox(height: 4),  
-                Divider(color: Colors.deepPurple[100]),  
-                const SizedBox(height: 4),  
-                Row(  
-                  children: [  
-                    SizedBox(  
-                      width: MediaQuery.of(context).size.width / 3,  
-                      child: const Row(  
-                        children: [  
-                          Icon(Icons.person, color: Colors.blue),  
-                          SizedBox(width: 8),  
-                          Text(  
-                            'Nama',  
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
-                          ),  
-                        ],  
-                      ),  
-                    ),  
-                    Expanded(  
-                      child: Text(  
-                        ': $fullName',  
-                        style: const TextStyle(fontSize: 14),  
-                      ),  
-                    ),  
-                    if (isSignedIn)  
-                      IconButton(  
-                        onPressed: () {  
-                          _showEditDialog(context, 'Nama', fullName, true);  
-                        },  
-                        icon: const Icon(Icons.edit),  
-                      ),  
-                  ],  
-                ),  
-                SizedBox(height: 4),  
-                Divider(color: Colors.deepPurple[100]),  
-                const SizedBox(height: 4),  
-                Row(  
-                  children: [  
-                    SizedBox(  
-                      width: MediaQuery.of(context).size.width / 3,  
-                      child: const Row(  
-                        children: [  
-                          Icon(Icons.email, color: Colors.black),  
-                          SizedBox(width: 8),  
-                          Text(  
-                            'Email',  
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
-                          ),  
-                        ],  
-                      ),  
-                    ),  
-                    Expanded(  
-                      child: Text(  
-                        ': $email',  
-                        style: const TextStyle(fontSize: 14),  
-                      ),  
-                    ),  
-                    if (isSignedIn)  
-                      IconButton(  
-                        onPressed: () {  
-                          _showEditDialog(context, 'Email', email, false);  
-                        },  
-                        icon: const Icon(Icons.edit),  
-                      ),  
-                  ],  
-                ),  
-                const SizedBox(height: 4),  
-                Divider(color: Colors.deepPurple[100]),  
-                const SizedBox(height: 4),  
-                Row(  
-                  children: [  
-                    SizedBox(  
-                      width: MediaQuery.of(context).size.width / 3,  
-                      child: const Row(  
-                        children: [  
-                          Icon(Icons.favorite, color: Colors.red),  
-                          SizedBox(width: 8),  
-                          Text(  
-                            'Favorit',  
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
-                          ),  
-                        ],  
-                      ),  
-                    ),  
-                    Expanded(  
-                      child: Text(  
-                        ': $favoriteCatCount',  
-                        style: const TextStyle(fontSize: 14),  
-                      ),  
-                    ),  
-                  ],  
-                ),  
-                const SizedBox(height: 4),  
-                Divider(color: Colors.deepPurple[100]),  
-                const SizedBox(height: 20),  
-                isSignedIn  
-                    ? TextButton(  
-                        onPressed: () => signOut(context),  
-                        style: TextButton.styleFrom(  
-                          backgroundColor: Colors.red,  
-                          foregroundColor: Colors.white,  
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),  
-                          shape: RoundedRectangleBorder(  
-                            borderRadius: BorderRadius.circular(8),  
-                          ),  
+                  const SizedBox(height: 20),  
+                  Divider(color: Colors.deepPurple[100]),  
+                  const SizedBox(height: 4),  
+                  Row(  
+                    children: [  
+                      SizedBox(  
+                        width: MediaQuery.of(context).size.width / 3,  
+                        child: const Row(  
+                          children: [  
+                            Icon(Icons.lock, color: Colors.amber),  
+                            SizedBox(width: 8),  
+                            Text(  
+                              'Pengguna',  
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
+                            ),  
+                          ],  
                         ),  
-                        child: Text('Keluar'))  
-                    : TextButton(  
-                        onPressed: signIn,  
-                        style: TextButton.styleFrom(  
-                          backgroundColor: Colors.blue,  
-                          foregroundColor: Colors.white,  
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),  
-                          shape: RoundedRectangleBorder(  
-                            borderRadius: BorderRadius.circular(8),  
-                          ),  
+                      ),  
+                      Expanded(  
+                        child: Text(  
+                          ': $userName',  
+                          style: const TextStyle(fontSize: 14),  
                         ),  
-                        child: const Text('Masuk'))  
-              ],  
+                      ),  
+                      if (isSignedIn)  
+                        IconButton(  
+                          onPressed: () {  
+                            _showEditDialog(context, 'Username', userName, false);  
+                          },  
+                          icon: const Icon(Icons.edit),  
+                        ),  
+                    ],  
+                  ),  
+                  const SizedBox(height: 4),  
+                  Divider(color: Colors.deepPurple[100]),  
+                  const SizedBox(height: 4),  
+                  Row(  
+                    children: [  
+                      SizedBox(  
+                        width: MediaQuery.of(context).size.width / 3,  
+                        child: const Row(  
+                          children: [  
+                            Icon(Icons.person, color: Colors.blue),  
+                            SizedBox(width: 8),  
+                            Text(  
+                              'Nama',  
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
+                            ),  
+                          ],  
+                        ),  
+                      ),  
+                      Expanded(  
+                        child: Text(  
+                          ': $fullName',  
+                          style: const TextStyle(fontSize: 14),  
+                        ),  
+                      ),  
+                      if (isSignedIn)  
+                        IconButton(  
+                          onPressed: () {  
+                            _showEditDialog(context, 'Nama', fullName, true);  
+                          },  
+                          icon: const Icon(Icons.edit),  
+                        ),  
+                    ],  
+                  ),  
+                  const SizedBox(height: 4),  
+                  Divider(color: Colors.deepPurple[100]),  
+                  const SizedBox(height: 4),  
+                  Row(  
+                    children: [  
+                      SizedBox(  
+                        width: MediaQuery.of(context).size.width / 3,  
+                        child: const Row(  
+                          children: [  
+                            Icon(Icons.email, color: Colors.black),  
+                            SizedBox(width: 8),  
+                            Text(  
+                              'Email',  
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
+                            ),  
+                          ],  
+                        ),  
+                      ),  
+                      Expanded(  
+                        child: Text(  
+                          ': $email',  
+                          style: const TextStyle(fontSize: 14),  
+                        ),  
+                      ),  
+                      if (isSignedIn)  
+                        IconButton(  
+                          onPressed: () {  
+                            _showEditDialog(context, 'Email', email, false);  
+                          },  
+                          icon: const Icon(Icons.edit),  
+                        ),  
+                    ],  
+                  ),  
+                  const SizedBox(height: 4),  
+                  Divider(color: Colors.deepPurple[100]),  
+                  const SizedBox(height: 4),  
+                  Row(  
+                    children: [  
+                      SizedBox(  
+                        width: MediaQuery.of(context).size.width / 3,  
+                        child: const Row(  
+                          children: [  
+                            Icon(Icons.favorite, color: Colors.red),  
+                            SizedBox(width: 8),  
+                            Text(  
+                              'Favorit',  
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),  
+                            ),  
+                          ],  
+                        ),  
+                      ),  
+                      Expanded(  
+                        child: Text(  
+                          ': $favoriteCatCount',  
+                          style: const TextStyle(fontSize: 14),  
+                        ),  
+                      ),  
+                    ],  
+                  ),  
+                  const SizedBox(height: 4),  
+                  Divider(color: Colors.deepPurple[100]),  
+                  const SizedBox(height: 20),  
+                  isSignedIn  
+                      ? TextButton(  
+                          onPressed: () => signOut(context),  
+                          style: TextButton.styleFrom(  
+                            backgroundColor: Colors.red,  
+                            foregroundColor: Colors.white,  
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),  
+                            shape: RoundedRectangleBorder(  
+                              borderRadius: BorderRadius.circular(8),  
+                            ),  
+                          ),  
+                          child: Text('Keluar'))  
+                      : TextButton(  
+                          onPressed: signIn,  
+                          style: TextButton.styleFrom(  
+                            backgroundColor: Colors.blue,  
+                            foregroundColor: Colors.white,  
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),  
+                            shape: RoundedRectangleBorder(  
+                              borderRadius: BorderRadius.circular(8),  
+                            ),  
+                          ),  
+                          child: const Text('Masuk'))  
+                ],  
+              ),  
             ),  
           ),  
         ],  
