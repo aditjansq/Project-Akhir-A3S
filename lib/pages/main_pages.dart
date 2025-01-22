@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     _pages = [
       HomePage(),
-      MessagePage(chatHistory: chatHistory),
+      MessagePage(),
       FavoritePage(),
       ProfilePage(),
     ];
